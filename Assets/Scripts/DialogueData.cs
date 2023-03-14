@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -16,22 +17,34 @@ namespace DialogueSystem
             return DialogueNodes.FirstOrDefault(node => node.NodeID.Key == nodeID.Key);
         }
 
-        public void AddChild(DialogueNode parent, DialogueNode child)
+        public void AddChild(DialogueNode parent, DialogueNode child, string outputGUID)
         {
-            parent.DialogueNodeEditorData.Childrens.Add(child);
-            child.DialogueNodeEditorData.Parents.Add(parent);
-            parent.DialogueNodeEditorData.AddEdge(new EdgeData(child.DialogueNodeEditorData.GUID, parent.DialogueNodeEditorData.GUID));
+            parent.EditorData.Childrens.Add(child);
+            child.EditorData.Parents.Add(parent);
+            EdgeData edgeData;
+
+            if (parent.EditorData.TryGetEdgeData(outputGUID, out edgeData))
+            {
+                edgeData.SetChildData(child.EditorData.GUID);
+            }
+            else
+            {
+                edgeData = new EdgeData(outputGUID, parent.EditorData.GUID, child.EditorData.GUID);
+                parent.EditorData.AddEdge(edgeData);
+            }
+
+            edgeData.Connected = true;
         }
 
         public void RemoveChild(DialogueNode parent, DialogueNode child)
         {
-            parent.DialogueNodeEditorData.Childrens.Remove(child);
-            child.DialogueNodeEditorData.Parents.Remove(parent);
+            parent.EditorData.Childrens.Remove(child);
+            child.EditorData.Parents.Remove(parent);
         }
 
         public List<DialogueNode> GetChildren(DialogueNode parent)
         {
-            return parent.DialogueNodeEditorData.Childrens; 
+            return parent.EditorData.Childrens; 
         }
 
         public DialogueNode CreateDialogueNode(int index, Vector2 position)
@@ -39,10 +52,11 @@ namespace DialogueSystem
             DialogueNode nodeInstance = ScriptableObject.CreateInstance(nameof(DialogueNode)) as DialogueNode;
             nodeInstance.name = "DialogueNode";
             nodeInstance.NodeID.AddIndex(index);
-            nodeInstance.DialogueNodeEditorData.GUID = GUID.Generate().ToString();
             DialogueNodes.Add(nodeInstance);
             AssetDatabase.AddObjectToAsset(nodeInstance, this);
             AssetDatabase.SaveAssets();
+            nodeInstance.Init();
+            nodeInstance.EditorData.GUID = GUID.Generate().ToString();
             return nodeInstance;
         }
 

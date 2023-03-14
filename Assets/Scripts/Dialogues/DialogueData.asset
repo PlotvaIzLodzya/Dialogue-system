@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2149744961164198505
+--- !u!114 &-2887634121815497625
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14,16 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _answers: []
   <DialogueLine>k__BackingField:
-    <Text>k__BackingField: 
+    <Text>k__BackingField: asd
   <NodeID>k__BackingField:
     <Key>k__BackingField: 
   <Type>k__BackingField: 0
-  DialogueNodeEditorData:
-    GUID: daa6329d4ce843f4f916c655c1c6cd7e
-    OutputPortsDatas: []
-    Parents: []
-    Childrens: []
-    EditorPosition: {x: 225, y: 152}
+  EditorData: {fileID: -2328260693806457864}
+--- !u!114 &-2328260693806457864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be034a54aa196764688d28ee0936567a, type: 3}
+  m_Name: EditorData
+  m_EditorClassIdentifier: 
+  GUID: 6e40d76fd79a76349aff18c0f42647e3
+  Parents: []
+  Childrens: []
+  Edges: []
+  EditorPosition: {x: 35.95999, y: 174}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34,12 +46,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3aaa8b48f1accf344b35ac4cd9033098, type: 3}
-  m_Name: DialogueData 1
+  m_Name: DialogueData
   m_EditorClassIdentifier: 
   DialogueNodes:
-  - {fileID: -2149744961164198505}
-  - {fileID: 7388017341436628987}
---- !u!114 &7388017341436628987
+  - {fileID: -2887634121815497625}
+  - {fileID: 1213851642970143072}
+--- !u!114 &1213851642970143072
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,9 +69,21 @@ MonoBehaviour:
   <NodeID>k__BackingField:
     <Key>k__BackingField: 
   <Type>k__BackingField: 0
-  DialogueNodeEditorData:
-    GUID: ad62fbad20d2d39478972e9c59db2c55
-    OutputPortsDatas: []
-    Parents: []
-    Childrens: []
-    EditorPosition: {x: 0, y: 0}
+  EditorData: {fileID: 4692391120233465910}
+--- !u!114 &4692391120233465910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be034a54aa196764688d28ee0936567a, type: 3}
+  m_Name: EditorData
+  m_EditorClassIdentifier: 
+  GUID: 
+  Parents: []
+  Childrens: []
+  Edges: []
+  EditorPosition: {x: 0, y: 0}

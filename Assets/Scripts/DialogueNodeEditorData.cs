@@ -6,10 +6,9 @@ using UnityEngine;
 namespace DialogueSystem
 {
     [System.Serializable]
-    public class DialogueNodeEditorData
+    public class DialogueNodeEditorData : ScriptableObject
     {
         public string GUID;
-        public List<OutputPortsData> OutputPortsDatas= new List<OutputPortsData>();
         public List<DialogueNode> Parents = new List<DialogueNode>();
         public List<DialogueNode> Childrens = new List<DialogueNode>();
         public List<EdgeData> Edges = new List<EdgeData>();
@@ -17,10 +16,14 @@ namespace DialogueSystem
 
         public void AddEdge(EdgeData edge)
         {
-            if (Edges.Any(cachedEdge => cachedEdge.GUIDOutput == edge.GUIDOutput))
-                return;
-
             Edges.Add(edge);
+        }
+
+        public bool TryGetEdgeData(string outputGUID, out EdgeData edgeData)
+        {
+            edgeData = Edges.FirstOrDefault(edge => edge.OutputGUID == outputGUID && edge.Connected == false);
+
+            return edgeData != default;
         }
     }
 }

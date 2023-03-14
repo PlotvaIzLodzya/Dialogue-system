@@ -38,30 +38,28 @@ public partial class DialogueEditorView : GraphView
         DeleteElements(graphElements);
         graphViewChanged += OnGraphViewChange;
 
-        dialogueData.DialogueNodes.ForEach(node => CreateDialogueNodeView(node, node.DialogueNodeEditorData.EditorPosition));
+        dialogueData.DialogueNodes.ForEach(node => CreateDialogueNodeView(node, node.EditorData.EditorPosition));
 
         dialogueData.DialogueNodes.ForEach(node =>
         {
-            node.DialogueNodeEditorData.Edges.ForEach(edgeData =>
+            node.EditorData.Edges.ForEach(edge =>
             {
-                EditorDialogueNodeView parentDialogueNodeView = FindEditorDialogueNodeView(edgeData.GUIDOutput);
-                EditorDialogueNodeView childDialogueNodeView = FindEditorDialogueNodeView(edgeData.GUIDInput);
+                EditorDialogueNodeView parentDialogueNodeView = FindEditorDialogueNodeView(edge.ParentNodeGUID);
+                EditorDialogueNodeView childDialogueNodeView = FindEditorDialogueNodeView(edge.ChildNodeGUID);
 
-                Edge edge = new Edge();
-                //edge.output = parentDialogueNodeView.DialogueNode.ou
-                AddElement(edge);
+                if (childDialogueNodeView != null)
+                {
+                    parentDialogueNodeView.Outputs.ForEach(output =>
+                    {
+                        if (output.name == edge.OutputGUID)
+                        {
+                            Edge edge = output.ConnectTo(childDialogueNodeView.Input);
+                            AddElement(edge);
+                        }
+                    });
+                }
+
             });
-            //node.DialogueNodeEditorData.Childrens.ForEach(child =>
-            //{
-            //    EditorDialogueNodeView parentDialogueNodeView = FindEditorDialogueNodeView(node);
-            //    EditorDialogueNodeView childDialogueNodeView = FindEditorDialogueNodeView(child);
-
-            //    parentDialogueNodeView.Outputs.ForEach(output =>
-            //    {
-            //        Edge edge = output.ConnectTo(childDialogueNodeView.Input);
-            //        AddElement(edge);
-            //    });
-            //});
         });
     }
 
@@ -98,7 +96,8 @@ public partial class DialogueEditorView : GraphView
             {
                 EditorDialogueNodeView parentView = edge.output.node as EditorDialogueNodeView;
                 EditorDialogueNodeView childView = edge.input.node as EditorDialogueNodeView;
-                _dialogueData.AddChild(parentView.DialogueNode, childView.DialogueNode);
+                
+                _dialogueData.AddChild(parentView.DialogueNode, childView.DialogueNode, edge.output.name);
             });
         }
 

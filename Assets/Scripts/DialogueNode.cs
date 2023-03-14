@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace DialogueSystem
 {
     [Serializable]
-    public class DialogueNode:ScriptableObject
+    public class DialogueNode : ScriptableObject
     {
         [SerializeField] private Answer[] _answers;
 
@@ -14,7 +15,15 @@ namespace DialogueSystem
         [field: SerializeField] public NodeID NodeID { get; private set; }
         [field: SerializeField] public DialogueNodeType Type { get; private set; }
 
-        /*[HideInInspector]*/ public DialogueNodeEditorData DialogueNodeEditorData = new DialogueNodeEditorData();
+        /*[HideInInspector]*/
+        public DialogueNodeEditorData EditorData;
+        public void Init()
+        {
+            EditorData = ScriptableObject.CreateInstance(nameof(DialogueNodeEditorData)) as DialogueNodeEditorData;
+            EditorData.name = "EditorData";
+            AssetDatabase.AddObjectToAsset(EditorData, this);
+            AssetDatabase.SaveAssets();
+        }
 
         public Answer[] GetAnswers()
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DialogueSystem;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
@@ -21,21 +22,23 @@ public class EditorDialogueNodeView: Node
     {
         DialogueNode = dialogueNode;
         title = "DialogueNode";
-        viewDataKey = DialogueNode.DialogueNodeEditorData.GUID;
+        viewDataKey = DialogueNode.EditorData.GUID;
         SetPosition(rect);
         CreateInputPorts();
         CreateContet();
-        dialogueNode.DialogueNodeEditorData.Edges.ForEach(edge =>
+
+        dialogueNode.EditorData.Edges.ForEach(edge =>
         {
-            CreateOutputPorts(edge.GUIDOutput);
+            if(Outputs.Any(output => output.name == edge.OutputGUID) == false)
+                CreateOutputPorts(edge.OutputGUID);
         });
     }
 
     public override void SetPosition(Rect newPos)
     {
         base.SetPosition(newPos);
-        DialogueNode.DialogueNodeEditorData.EditorPosition.x = newPos.xMin;
-        DialogueNode.DialogueNodeEditorData.EditorPosition.y = newPos.yMin;
+        DialogueNode.EditorData.EditorPosition.x = newPos.xMin;
+        DialogueNode.EditorData.EditorPosition.y = newPos.yMin;
     }
 
     public override void OnUnselected()
@@ -48,6 +51,11 @@ public class EditorDialogueNodeView: Node
     {
         base.OnSelected();
         OnNodeSelected?.Invoke(this);
+    }
+
+    public Port GetOutputPort(string guid)
+    {
+        return Outputs.First(port => port.name == guid);
     }
 
     private void CreateInputPorts()
@@ -95,6 +103,7 @@ public class EditorDialogueNodeView: Node
     {
         string guid = GUID.Generate().ToString();
         Port output = CreateOutputPorts(guid);
-        DialogueNode.DialogueNodeEditorData.AddEdge(new EdgeData(guid));
+        EdgeData edgeData = new EdgeData(guid, DialogueNode.EditorData.GUID);
+        DialogueNode.EditorData.AddEdge(edgeData);
     }
 }

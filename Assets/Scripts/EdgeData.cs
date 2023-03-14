@@ -2,21 +2,32 @@
 
 namespace DialogueSystem
 {
+    [System.Serializable]
     public class EdgeData
     {
-        public string PortGUID;
-        public string GUIDInput;
-        public string GUIDOutput;
+        public string ParentNodeGUID { get; private set; } = "Not setted";
+        public string ChildNodeGUID { get; private set; } = "Not setted";
+        public string InputGUID { get; private set; } = "Not setted";
+        public string OutputGUID { get; private set; } = "Not setted";
 
-        public EdgeData(string input, string output)
+        public bool Connected;
+
+        public EdgeData(string outputGUID, string nodeGUID, string childGUID)
         {
-            GUIDInput = input;
-            GUIDOutput = output;
+            OutputGUID = outputGUID;
+            ParentNodeGUID = nodeGUID;
+            ChildNodeGUID = childGUID;
         }
 
-        public EdgeData(string output)
+        public EdgeData(string outputGUID, string nodeGUID)
         {
-            GUIDOutput = output;
+            OutputGUID = outputGUID;
+            ParentNodeGUID = nodeGUID;
+        }
+
+        public void SetChildData(string childGUID)
+        {
+            ChildNodeGUID = childGUID;
         }
     }
 }
