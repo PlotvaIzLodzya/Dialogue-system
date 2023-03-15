@@ -1,25 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2887634121815497625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f16b41be6bb6d8448be9b8e99745aad6, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  _answers: []
-  <DialogueLine>k__BackingField:
-    <Text>k__BackingField: asd
-  <NodeID>k__BackingField:
-    <Key>k__BackingField: 
-  <Type>k__BackingField: 0
-  EditorData: {fileID: -2328260693806457864}
---- !u!114 &-2328260693806457864
+--- !u!114 &-6501288742923856861
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -31,27 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be034a54aa196764688d28ee0936567a, type: 3}
   m_Name: EditorData
   m_EditorClassIdentifier: 
-  GUID: 6e40d76fd79a76349aff18c0f42647e3
-  Parents: []
+  GUID: 07b67d703841f384cbb86b378213570d
+  Parents:
+  - {fileID: -4623871041191367645}
   Childrens: []
   Edges: []
-  EditorPosition: {x: 35.95999, y: 174}
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3aaa8b48f1accf344b35ac4cd9033098, type: 3}
-  m_Name: DialogueData
-  m_EditorClassIdentifier: 
-  DialogueNodes:
-  - {fileID: -2887634121815497625}
-  - {fileID: 1213851642970143072}
---- !u!114 &1213851642970143072
+  EditorPosition: {x: 577, y: 336}
+--- !u!114 &-4623871041191367645
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -69,8 +36,43 @@ MonoBehaviour:
   <NodeID>k__BackingField:
     <Key>k__BackingField: 
   <Type>k__BackingField: 0
-  EditorData: {fileID: 4692391120233465910}
---- !u!114 &4692391120233465910
+  EditorData: {fileID: 7870432361991013484}
+--- !u!114 &-3116511407231933865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16b41be6bb6d8448be9b8e99745aad6, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  _answers: []
+  <DialogueLine>k__BackingField:
+    <Text>k__BackingField: 
+  <NodeID>k__BackingField:
+    <Key>k__BackingField: 
+  <Type>k__BackingField: 0
+  EditorData: {fileID: -6501288742923856861}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aaa8b48f1accf344b35ac4cd9033098, type: 3}
+  m_Name: DialogueData
+  m_EditorClassIdentifier: 
+  DialogueNodes:
+  - {fileID: -4623871041191367645}
+  - {fileID: 8253783339632025457}
+  - {fileID: -3116511407231933865}
+--- !u!114 &3872628577256306766
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,8 +84,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be034a54aa196764688d28ee0936567a, type: 3}
   m_Name: EditorData
   m_EditorClassIdentifier: 
-  GUID: 
-  Parents: []
+  GUID: 13c2d886446eec1419b8b99e0b45a971
+  Parents:
+  - {fileID: -4623871041191367645}
+  - {fileID: -4623871041191367645}
   Childrens: []
   Edges: []
-  EditorPosition: {x: 0, y: 0}
+  EditorPosition: {x: 508, y: 203}
+--- !u!114 &7870432361991013484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be034a54aa196764688d28ee0936567a, type: 3}
+  m_Name: EditorData
+  m_EditorClassIdentifier: 
+  GUID: 9d010d8083fc8694a8c4e885509996f8
+  Parents: []
+  Childrens:
+  - {fileID: 8253783339632025457}
+  - {fileID: -3116511407231933865}
+  - {fileID: 8253783339632025457}
+  Edges:
+  - <ParentNodeGUID>k__BackingField: 9d010d8083fc8694a8c4e885509996f8
+    <ChildNodeGUID>k__BackingField: 13c2d886446eec1419b8b99e0b45a971
+    <InputGUID>k__BackingField: Not setted
+    <OutputGUID>k__BackingField: 5c5625591e7611b4c9ebb2b9ab122f72
+    Connected: 1
+  - <ParentNodeGUID>k__BackingField: 9d010d8083fc8694a8c4e885509996f8
+    <ChildNodeGUID>k__BackingField: 13c2d886446eec1419b8b99e0b45a971
+    <InputGUID>k__BackingField: Not setted
+    <OutputGUID>k__BackingField: 41cc53c9f0d9a274492f2c0ca1799f09
+    Connected: 1
+  - <ParentNodeGUID>k__BackingField: 9d010d8083fc8694a8c4e885509996f8
+    <ChildNodeGUID>k__BackingField: 07b67d703841f384cbb86b378213570d
+    <InputGUID>k__BackingField: Not setted
+    <OutputGUID>k__BackingField: 5c5625591e7611b4c9ebb2b9ab122f72
+    Connected: 1
+  EditorPosition: {x: 147, y: 183}
+--- !u!114 &8253783339632025457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16b41be6bb6d8448be9b8e99745aad6, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  _answers: []
+  <DialogueLine>k__BackingField:
+    <Text>k__BackingField: 
+  <NodeID>k__BackingField:
+    <Key>k__BackingField: 
+  <Type>k__BackingField: 0
+  EditorData: {fileID: 3872628577256306766}

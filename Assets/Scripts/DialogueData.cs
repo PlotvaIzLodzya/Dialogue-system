@@ -55,8 +55,11 @@ namespace DialogueSystem
             DialogueNodes.Add(nodeInstance);
             AssetDatabase.AddObjectToAsset(nodeInstance, this);
             AssetDatabase.SaveAssets();
+
             nodeInstance.Init();
             nodeInstance.EditorData.GUID = GUID.Generate().ToString();
+            EditorUtility.SetDirty(this);
+
             return nodeInstance;
         }
 

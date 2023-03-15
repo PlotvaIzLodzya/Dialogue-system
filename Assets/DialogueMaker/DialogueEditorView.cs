@@ -44,6 +44,7 @@ public partial class DialogueEditorView : GraphView
         {
             node.EditorData.Edges.ForEach(edge =>
             {
+                Debug.Log(edge.ParentNodeGUID);
                 EditorDialogueNodeView parentDialogueNodeView = FindEditorDialogueNodeView(edge.ParentNodeGUID);
                 EditorDialogueNodeView childDialogueNodeView = FindEditorDialogueNodeView(edge.ChildNodeGUID);
 
