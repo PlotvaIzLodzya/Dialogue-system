@@ -14,15 +14,26 @@ namespace DialogueSystem
         [field: SerializeField] public NodeID NodeID { get; private set; }
         [field: SerializeField] public DialogueNodeType Type { get; private set; }
 
-        [HideInInspector] public DialogueNodeEditorData EditorData;
+        public DialogueNodeEditorData EditorData;
 
-        public void Init()
+        public void CreateData()
         {
             EditorData = ScriptableObject.CreateInstance(nameof(DialogueNodeEditorData)) as DialogueNodeEditorData;
             EditorData.name = "EditorData";
+            //Undo.RecordObject(this, "DialogueEditor (Create Dialogue Editor Data)");
             AssetDatabase.AddObjectToAsset(EditorData, this);
+            Undo.RegisterCreatedObjectUndo(EditorData, "DialogueEditor (Create Dialogue Editor Data)");
             AssetDatabase.SaveAssets();
 
+            EditorUtility.SetDirty(this);
+        }
+
+        public void RemoveData()
+        {
+            Undo.RecordObject(this, "DialogueEditor (Delete Dialogue Editor Data)");
+            //AssetDatabase.RemoveObjectFromAsset(EditorData);
+            Undo.DestroyObjectImmediate(EditorData);
+            AssetDatabase.SaveAssets();
             EditorUtility.SetDirty(this);
         }
 

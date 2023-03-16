@@ -43,6 +43,7 @@ public class DialogueEditor : EditorWindow
         _dialogueEditorView = root.Q<DialogueEditorView>();
         _dialogueEditorView.OnNodeSelected += OnNodeSelectionChanged;
         _dialogueEditorView.OnNodeUnselected += OnNodeUnselected;
+        _dialogueEditorView.OnEdgeDeleted += OnSelectionChange;
 
         OnSelectionChange();
     }

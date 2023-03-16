@@ -6,7 +6,6 @@ using DialogueSystem;
 using System;
 using System.Linq;
 using UnityEngine;
-using Unity.VisualScripting;
 using Edge = UnityEditor.Experimental.GraphView.Edge;
 
 public partial class DialogueEditorView : GraphView
@@ -16,11 +15,12 @@ public partial class DialogueEditorView : GraphView
 
     public event Action<EditorDialogueNodeView> OnNodeSelected;
     public event Action OnNodeUnselected;
+    public event Action OnEdgeDeleted;
 
     public DialogueEditorView()
     {
         Insert(0, new GridBackground());
-
+        //_dialogueData.FindEdtorDialogueNodeView = FindEditorDialogueNodeView;
         this.AddManipulator(new ContentZoomer());
         this.AddManipulator(new ContentDragger());
         this.AddManipulator(new SelectionDragger());
@@ -28,8 +28,15 @@ public partial class DialogueEditorView : GraphView
 
         var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/DialogueMaker/DialogueEditor.uss");
         styleSheets.Add(styleSheet);
+
+        Undo.undoRedoPerformed += OnUndoRedo;
     }
 
+    private void OnUndoRedo()
+    {
+        PoppulateView(_dialogueData);   
+        AssetDatabase.SaveAssets();
+    }
 
     internal void PoppulateView(DialogueData dialogueData)
     {
@@ -44,7 +51,6 @@ public partial class DialogueEditorView : GraphView
         {
             node.EditorData.Edges.ForEach(edge =>
             {
-                Debug.Log(edge.ParentNodeGUID);
                 EditorDialogueNodeView parentDialogueNodeView = FindEditorDialogueNodeView(edge.ParentNodeGUID);
                 EditorDialogueNodeView childDialogueNodeView = FindEditorDialogueNodeView(edge.ChildNodeGUID);
 
@@ -86,7 +92,7 @@ public partial class DialogueEditorView : GraphView
                 {
                     EditorDialogueNodeView parentView = edge.output.node as EditorDialogueNodeView;
                     EditorDialogueNodeView childView = edge.input.node as EditorDialogueNodeView;
-                    _dialogueData.RemoveChild(parentView.DialogueNode, childView.DialogueNode);
+                    _dialogueData.RemoveChild(parentView.DialogueNode, childView.DialogueNode, edge.output.name);
                 }
             });
         }
@@ -98,7 +104,7 @@ public partial class DialogueEditorView : GraphView
                 EditorDialogueNodeView parentView = edge.output.node as EditorDialogueNodeView;
                 EditorDialogueNodeView childView = edge.input.node as EditorDialogueNodeView;
                 
-                _dialogueData.AddChild(parentView.DialogueNode, childView.DialogueNode, edge.output.name);
+                _dialogueData.AddChild(parentView.DialogueNode, childView.DialogueNode, edge.output.name, edge);
             });
         }
 
@@ -132,7 +138,8 @@ public partial class DialogueEditorView : GraphView
         rect.position = position;
         EditorDialogueNodeView editorDialogueNodeView = new EditorDialogueNodeView(dialogueNode, rect);
         editorDialogueNodeView.OnNodeSelected = OnNodeSelected;
-        editorDialogueNodeView.OnNodeUnselected = OnNodeUnselected; 
+        editorDialogueNodeView.OnNodeUnselected = OnNodeUnselected;
+        editorDialogueNodeView.OnEdgeDeleted = OnEdgeDeleted;
         AddElement(editorDialogueNodeView);
     }
 }
