@@ -24,12 +24,12 @@ public class EditorDialogueNodeView: Node
     {
         DialogueNode = dialogueNode;
         title = "DialogueNode";
-        viewDataKey = DialogueNode.EditorData.GUID;
+        viewDataKey = DialogueNode.GUID;
         SetPosition(rect);
         CreateInputPorts();
         CreateContet();
 
-        dialogueNode.EditorData.Edges.ForEach(edge =>
+        dialogueNode.Edges.ForEach(edge =>
         {
             if(Outputs.Any(output => output.name == edge.OutputGUID) == false)
                 CreateOutputPorts(edge.OutputGUID);
@@ -39,10 +39,10 @@ public class EditorDialogueNodeView: Node
     public override void SetPosition(Rect newPos)
     {
         base.SetPosition(newPos);
-        Undo.RecordObject(DialogueNode.EditorData, "DialogueEditor (Set Position)");
-        DialogueNode.EditorData.EditorPosition.x = newPos.xMin;
-        DialogueNode.EditorData.EditorPosition.y = newPos.yMin;
-        EditorUtility.SetDirty(DialogueNode.EditorData);
+        Undo.RecordObject(DialogueNode, "DialogueEditor (Set Position)");
+        DialogueNode.EditorPosition.x = newPos.xMin;
+        DialogueNode.EditorPosition.y = newPos.yMin;
+        EditorUtility.SetDirty(DialogueNode);
     }
 
     public override void OnUnselected()
@@ -111,8 +111,8 @@ public class EditorDialogueNodeView: Node
     {
         string guid = GUID.Generate().ToString();
         Port output = CreateOutputPorts(guid);
-        EdgeData edgeData = new EdgeData(guid, DialogueNode.EditorData.GUID);
-        DialogueNode.EditorData.AddEdge(edgeData);
+        EdgeData edgeData = new EdgeData(guid, DialogueNode.GUID);
+        DialogueNode.AddEdge(edgeData);
     }
 
     public void OnDeleteButtonClick(string guid)
@@ -120,7 +120,7 @@ public class EditorDialogueNodeView: Node
         var output =  Outputs.First(output => output.name == guid);
         var textfield =  TextFields.First(text => text.name == guid);
 
-        DialogueNode.EditorData.Edges.ForEach(edgeData =>
+        DialogueNode.Edges.ForEach(edgeData =>
         {
             if(edgeData.OutputGUID == guid)
             {
@@ -128,7 +128,7 @@ public class EditorDialogueNodeView: Node
             }
         });
 
-        DialogueNode.EditorData.Edges.RemoveAll(edgeData => edgeData.OutputGUID == guid);
+        DialogueNode.Edges.RemoveAll(edgeData => edgeData.OutputGUID == guid);
 
         outputContainer.Remove(textfield);
         Outputs.Remove(output);

@@ -45,11 +45,11 @@ public partial class DialogueEditorView : GraphView
         DeleteElements(graphElements);
         graphViewChanged += OnGraphViewChange;
 
-        dialogueData.DialogueNodes.ForEach(node => CreateDialogueNodeView(node, node.EditorData.EditorPosition));
+        dialogueData.DialogueNodes.ForEach(node => CreateDialogueNodeView(node, node.EditorPosition));
 
         dialogueData.DialogueNodes.ForEach(node =>
         {
-            node.EditorData.Edges.ForEach(edge =>
+            node.Edges.ForEach(edge =>
             {
                 EditorDialogueNodeView parentDialogueNodeView = FindEditorDialogueNodeView(edge.ParentNodeGUID);
                 EditorDialogueNodeView childDialogueNodeView = FindEditorDialogueNodeView(edge.ChildNodeGUID);

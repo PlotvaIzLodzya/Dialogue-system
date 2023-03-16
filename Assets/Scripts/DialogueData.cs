@@ -22,35 +22,35 @@ namespace DialogueSystem
         {
             //parent.EditorData.Childrens.Add(child);
             //child.EditorData.Parents.Add(parent);
-            Undo.RecordObject(parent.EditorData, "DialogueEditor (AddChild)");
+            Undo.RecordObject(parent, "DialogueEditor (AddChild)");
             EdgeData edgeData;
 
-            if (parent.EditorData.TryGetEdgeData(outputGUID, out edgeData))
+            if (parent.TryGetEdgeData(outputGUID, out edgeData))
             {
-                edgeData.SetEdgeData(child.EditorData.GUID, edge);
+                edgeData.SetEdgeData(child.GUID, edge);
             }
             else
             {
-                edgeData = new EdgeData(outputGUID, parent.EditorData.GUID, child.EditorData.GUID);
-                parent.EditorData.AddEdge(edgeData);
+                edgeData = new EdgeData(outputGUID, parent.GUID, child.GUID);
+                parent.AddEdge(edgeData);
             }
             edgeData.Connected = true;
 
-            EditorUtility.SetDirty(parent.EditorData);
+            EditorUtility.SetDirty(parent);
         }
 
         public void RemoveChild(DialogueNode parent, DialogueNode child, string outputName)
         {
-            Undo.RecordObject(parent.EditorData, "DialogueEditor (RemoveChild)");
+            Undo.RecordObject(parent, "DialogueEditor (RemoveChild)");
             //parent.EditorData.Childrens.Remove(child);
             //child.EditorData.Parents.Remove(parent);
-            parent.EditorData.DeleteEdge(outputName, child.EditorData.GUID);
-            EditorUtility.SetDirty(parent.EditorData);
+            parent.DeleteEdge(outputName, child.GUID);
+            EditorUtility.SetDirty(parent);
         }
 
         public List<DialogueNode> GetChildren(DialogueNode parent)
         {
-            return parent.EditorData.Childrens; 
+            return parent.Childrens; 
         }
 
         public DialogueNode CreateDialogueNode(int index, Vector2 position)
@@ -61,8 +61,7 @@ namespace DialogueSystem
             DialogueNodes.Add(nodeInstance);
             Undo.RecordObject(this, "DialogueEditor (Create Dialogue Node)");
             AssetDatabase.AddObjectToAsset(nodeInstance, this);
-            nodeInstance.CreateData();
-            nodeInstance.EditorData.GUID = GUID.Generate().ToString();
+            nodeInstance.GUID = GUID.Generate().ToString();
             Undo.RegisterCreatedObjectUndo(nodeInstance, "DialogueEditor (Create Dialogue Node)");
             AssetDatabase.SaveAssets();
 
@@ -73,7 +72,6 @@ namespace DialogueSystem
         public void DeleteDialogueNode(DialogueNode dialogueNode)
         {
             Undo.RecordObject(this, "DialogueEditor (Delete Dialogue Node)");
-            dialogueNode.RemoveData();
             DialogueNodes.Remove(dialogueNode);
             Undo.DestroyObjectImmediate(dialogueNode);
             AssetDatabase.SaveAssets();

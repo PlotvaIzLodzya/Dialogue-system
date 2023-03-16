@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7288151647241303803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16b41be6bb6d8448be9b8e99745aad6, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  _answers: []
+  <DialogueLine>k__BackingField:
+    <Text>k__BackingField: 
+  <NodeID>k__BackingField:
+    <Key>k__BackingField: 
+  <Type>k__BackingField: 0
+  GUID: 7d96dd86231be0544828a0cd31bc56f3
+  Parents: []
+  Childrens: []
+  Edges: []
+  EditorPosition: {x: 599.3875, y: 229.0323}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aaa8b48f1accf344b35ac4cd9033098, type: 3}
+  m_Name: DialogueData
+  m_EditorClassIdentifier: 
+  DialogueNodes:
+  - {fileID: 2229328415161975717}
+  - {fileID: -7288151647241303803}
+--- !u!114 &2229328415161975717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16b41be6bb6d8448be9b8e99745aad6, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  _answers: []
+  <DialogueLine>k__BackingField:
+    <Text>k__BackingField: 
+  <NodeID>k__BackingField:
+    <Key>k__BackingField: 
+  <Type>k__BackingField: 0
+  GUID: dfb65dcd21dd8e8408b83cd8f6a66554
+  Parents: []
+  Childrens: []
+  Edges:
+  - <DataGUID>k__BackingField: fb096bcb906b3f24aafb42019eeae71e
+    <ParentNodeGUID>k__BackingField: dfb65dcd21dd8e8408b83cd8f6a66554
+    <ChildNodeGUID>k__BackingField: 7d96dd86231be0544828a0cd31bc56f3
+    <InputGUID>k__BackingField: Not setted
+    <OutputGUID>k__BackingField: feea98c78e3c077448974e62ab36010c
+    Connected: 1
+  EditorPosition: {x: 242, y: 177}
