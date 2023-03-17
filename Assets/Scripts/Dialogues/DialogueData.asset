@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7288151647241303803
+--- !u!114 &-7965429519806661319
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12,17 +12,97 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16b41be6bb6d8448be9b8e99745aad6, type: 3}
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
-  _answers: []
+  _answers:
+  - <DialogueLine>k__BackingField:
+      <Text>k__BackingField: "Ok mr.fuck you\t"
+    GUID: c7bde706b43c3ff47b97c7b998f1bbca
+    ChildGUID: 
+  - <DialogueLine>k__BackingField:
+      <Text>k__BackingField: fuck yoyu
+    GUID: 72e9b3d0ac97e6641aa89ee8b56864e9
+    ChildGUID: 
+  <DialogueLine>k__BackingField:
+    <Text>k__BackingField: Hi! My name is mr.FuckYou. Im at your Service
+  <NodeID>k__BackingField:
+    <Key>k__BackingField: 
+  <Type>k__BackingField: 0
+  GUID: 77a191cdae580e3449ca516fbee524b6
+  Edges:
+  - <DataGUID>k__BackingField: cfbd25467c94ca743a1404856536269b
+    <ParentNodeGUID>k__BackingField: 77a191cdae580e3449ca516fbee524b6
+    <ChildNodeGUID>k__BackingField: 84aa37835f09f504e8de9cc4a0e18bf5
+    <InputGUID>k__BackingField: Not setted
+    <OutputGUID>k__BackingField: c7bde706b43c3ff47b97c7b998f1bbca
+    Connected: 1
+  - <DataGUID>k__BackingField: b24a61de8ea883a44a7a27200b286840
+    <ParentNodeGUID>k__BackingField: 77a191cdae580e3449ca516fbee524b6
+    <ChildNodeGUID>k__BackingField: 2ee395fb077de9b42a41f52bd82abfa0
+    <InputGUID>k__BackingField: Not setted
+    <OutputGUID>k__BackingField: 72e9b3d0ac97e6641aa89ee8b56864e9
+    Connected: 1
+  EditorPosition: {x: -32.37001, y: 142.00006}
+--- !u!114 &-2647337959369086107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16b41be6bb6d8448be9b8e99745aad6, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  _answers:
+  - <DialogueLine>k__BackingField:
+      <Text>k__BackingField: 
+    GUID: 384c9644736f0914ab8a9ac3a9a0e5c9
+    ChildGUID: 
   <DialogueLine>k__BackingField:
     <Text>k__BackingField: 
   <NodeID>k__BackingField:
     <Key>k__BackingField: 
   <Type>k__BackingField: 0
-  GUID: 7d96dd86231be0544828a0cd31bc56f3
-  Parents: []
-  Childrens: []
-  Edges: []
-  EditorPosition: {x: 599.3875, y: 229.0323}
+  GUID: 7a94d2a71b049374099bfb4770b64a13
+  Edges:
+  - <DataGUID>k__BackingField: 95e6385e594235341b572494af0d06e1
+    <ParentNodeGUID>k__BackingField: 7a94d2a71b049374099bfb4770b64a13
+    <ChildNodeGUID>k__BackingField: Not setted
+    <InputGUID>k__BackingField: Not setted
+    <OutputGUID>k__BackingField: 384c9644736f0914ab8a9ac3a9a0e5c9
+    Connected: 0
+  EditorPosition: {x: 745.2502, y: 348.99997}
+--- !u!114 &-1686176019286980178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16b41be6bb6d8448be9b8e99745aad6, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  _answers:
+  - <DialogueLine>k__BackingField:
+      <Text>k__BackingField: 
+    GUID: c4f48abb3ab58ad41a120316b7151313
+    ChildGUID: 
+  <DialogueLine>k__BackingField:
+    <Text>k__BackingField: Abrakadabra
+  <NodeID>k__BackingField:
+    <Key>k__BackingField: 
+  <Type>k__BackingField: 0
+  GUID: 2ee395fb077de9b42a41f52bd82abfa0
+  Edges:
+  - <DataGUID>k__BackingField: 4c6a0ba64b7d58e4bacd84a361af1610
+    <ParentNodeGUID>k__BackingField: 2ee395fb077de9b42a41f52bd82abfa0
+    <ChildNodeGUID>k__BackingField: Not setted
+    <InputGUID>k__BackingField: Not setted
+    <OutputGUID>k__BackingField: c4f48abb3ab58ad41a120316b7151313
+    Connected: 0
+  EditorPosition: {x: 717.7501, y: 168.00005}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36,9 +116,11 @@ MonoBehaviour:
   m_Name: DialogueData
   m_EditorClassIdentifier: 
   DialogueNodes:
-  - {fileID: 2229328415161975717}
-  - {fileID: -7288151647241303803}
---- !u!114 &2229328415161975717
+  - {fileID: -7965429519806661319}
+  - {fileID: 5098553777132191690}
+  - {fileID: -1686176019286980178}
+  - {fileID: -2647337959369086107}
+--- !u!114 &5098553777132191690
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -50,20 +132,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16b41be6bb6d8448be9b8e99745aad6, type: 3}
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
-  _answers: []
+  _answers:
+  - <DialogueLine>k__BackingField:
+      <Text>k__BackingField: ssss
+    GUID: 2b8d0608e6713df48ba5eff4e6672081
+    ChildGUID: 
+  - <DialogueLine>k__BackingField:
+      <Text>k__BackingField: Fuck yout mr fuck you
+    GUID: f389dd25c4bc1e04bbc56dd9c8b9417e
+    ChildGUID: 
+  - <DialogueLine>k__BackingField:
+      <Text>k__BackingField: 
+    GUID: 6ea0971159f61fd4485c20bcbac19379
+    ChildGUID: 
   <DialogueLine>k__BackingField:
-    <Text>k__BackingField: 
+    <Text>k__BackingField: asdasd
   <NodeID>k__BackingField:
     <Key>k__BackingField: 
   <Type>k__BackingField: 0
-  GUID: dfb65dcd21dd8e8408b83cd8f6a66554
-  Parents: []
-  Childrens: []
+  GUID: 84aa37835f09f504e8de9cc4a0e18bf5
   Edges:
-  - <DataGUID>k__BackingField: fb096bcb906b3f24aafb42019eeae71e
-    <ParentNodeGUID>k__BackingField: dfb65dcd21dd8e8408b83cd8f6a66554
-    <ChildNodeGUID>k__BackingField: 7d96dd86231be0544828a0cd31bc56f3
+  - <DataGUID>k__BackingField: d82233abf5780b84baa9e77942d39613
+    <ParentNodeGUID>k__BackingField: 84aa37835f09f504e8de9cc4a0e18bf5
+    <ChildNodeGUID>k__BackingField: 7a94d2a71b049374099bfb4770b64a13
     <InputGUID>k__BackingField: Not setted
-    <OutputGUID>k__BackingField: feea98c78e3c077448974e62ab36010c
+    <OutputGUID>k__BackingField: 2b8d0608e6713df48ba5eff4e6672081
     Connected: 1
-  EditorPosition: {x: 242, y: 177}
+  - <DataGUID>k__BackingField: 1b20863da1da7384fbe6daf3c2e34cf6
+    <ParentNodeGUID>k__BackingField: 84aa37835f09f504e8de9cc4a0e18bf5
+    <ChildNodeGUID>k__BackingField: 2ee395fb077de9b42a41f52bd82abfa0
+    <InputGUID>k__BackingField: Not setted
+    <OutputGUID>k__BackingField: f389dd25c4bc1e04bbc56dd9c8b9417e
+    Connected: 1
+  - <DataGUID>k__BackingField: 2d63d28eb256e634da837f37d87b2256
+    <ParentNodeGUID>k__BackingField: 84aa37835f09f504e8de9cc4a0e18bf5
+    <ChildNodeGUID>k__BackingField: 7a94d2a71b049374099bfb4770b64a13
+    <InputGUID>k__BackingField: Not setted
+    <OutputGUID>k__BackingField: 6ea0971159f61fd4485c20bcbac19379
+    Connected: 1
+  - <DataGUID>k__BackingField: 3802e02e316375243b1bd2fe2c4231d0
+    <ParentNodeGUID>k__BackingField: 84aa37835f09f504e8de9cc4a0e18bf5
+    <ChildNodeGUID>k__BackingField: 7a94d2a71b049374099bfb4770b64a13
+    <InputGUID>k__BackingField: Not setted
+    <OutputGUID>k__BackingField: f389dd25c4bc1e04bbc56dd9c8b9417e
+    Connected: 1
+  EditorPosition: {x: 337.45004, y: 294.49997}

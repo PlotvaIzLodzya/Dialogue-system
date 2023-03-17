@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Pipes;
 using System.Linq;
 using DialogueSystem;
 using UnityEditor;
@@ -27,22 +28,30 @@ public class EditorDialogueNodeView: Node
         viewDataKey = DialogueNode.GUID;
         SetPosition(rect);
         CreateInputPorts();
-        CreateContet();
+        CreateContet(DialogueNode.DialogueLine.Text);
 
-        dialogueNode.Edges.ForEach(edge =>
+        if(dialogueNode!= null)
         {
-            if(Outputs.Any(output => output.name == edge.OutputGUID) == false)
-                CreateOutputPorts(edge.OutputGUID);
-        });
+            dialogueNode.Edges.ForEach(edge =>
+            {
+                if(Outputs.Any(output => output.name == edge.OutputGUID) == false)
+                    CreateOutputPorts(edge.OutputGUID);
+            });
+        }
     }
 
     public override void SetPosition(Rect newPos)
     {
         base.SetPosition(newPos);
-        Undo.RecordObject(DialogueNode, "DialogueEditor (Set Position)");
+
+        if (DialogueNode != null)
+            Undo.RecordObject(DialogueNode, "DialogueEditor (Set Position)");
+
         DialogueNode.EditorPosition.x = newPos.xMin;
         DialogueNode.EditorPosition.y = newPos.yMin;
-        EditorUtility.SetDirty(DialogueNode);
+
+        if (DialogueNode != null)
+            EditorUtility.SetDirty(DialogueNode);
     }
 
     public override void OnUnselected()
@@ -80,6 +89,11 @@ public class EditorDialogueNodeView: Node
         textField.labelElement.style.minWidth = 20;
         textField.labelElement.style.alignSelf = Align.Center;
         textField.style.minWidth = 200;
+        textField.RegisterValueChangedCallback(callback => Test(guid, callback.newValue));
+
+        if (DialogueNode.TryGetAnswer(guid, out Answer answer))
+            textField.value = answer.DialogueLine.Text;
+
         var button = new Button(() => OnDeleteButtonClick(guid));
         button.text = "X";
         textField.hierarchy.Insert(0, button);
@@ -99,27 +113,52 @@ public class EditorDialogueNodeView: Node
         return output;
     }
 
+    private void Test(string guid, string text)
+    {
+        DialogueNode.SetAnswerText(guid, text);
+    }
 
-    private void CreateContet()
+
+    private void CreateContet(string text)
     {
         var button = new Button(()=> OnCreateButtonClick());
         button.text = "New stuff";
+        var textField = new TextField();
+        textField.maxLength = 150;
+        textField.multiline = true;
+        textField.value = text;
+        textField.RegisterValueChangedCallback(text => LineChanged(textField.value));
+        mainContainer.Insert(1, textField);
         titleContainer.Add(button);
+    }
+
+    private void LineChanged(string text)
+    {
+        DialogueNode.DialogueLine.SetText(text);
     }
 
     private void OnCreateButtonClick()
     {
+        if (DialogueNode != null)
+            Undo.RecordObject(DialogueNode, "DiealogueEditor (Port Created)");
+
         string guid = GUID.Generate().ToString();
         Port output = CreateOutputPorts(guid);
         EdgeData edgeData = new EdgeData(guid, DialogueNode.GUID);
         DialogueNode.AddEdge(edgeData);
+        DialogueNode.AddAnswer(guid);
+
     }
 
     public void OnDeleteButtonClick(string guid)
     {
+        if (DialogueNode != null)
+            Undo.RecordObject(DialogueNode, "DiealogueEditor (Port Deleted)");
+
         var output =  Outputs.First(output => output.name == guid);
         var textfield =  TextFields.First(text => text.name == guid);
 
+        DialogueNode.DeleteAnswer(guid);
         DialogueNode.Edges.ForEach(edgeData =>
         {
             if(edgeData.OutputGUID == guid)
@@ -129,7 +168,6 @@ public class EditorDialogueNodeView: Node
         });
 
         DialogueNode.Edges.RemoveAll(edgeData => edgeData.OutputGUID == guid);
-
         outputContainer.Remove(textfield);
         Outputs.Remove(output);
         OnEdgeDeleted?.Invoke();

@@ -20,8 +20,6 @@ namespace DialogueSystem
 
         public void AddChild(DialogueNode parent, DialogueNode child, string outputGUID, Edge edge)
         {
-            //parent.EditorData.Childrens.Add(child);
-            //child.EditorData.Parents.Add(parent);
             Undo.RecordObject(parent, "DialogueEditor (AddChild)");
             EdgeData edgeData;
 
@@ -42,15 +40,8 @@ namespace DialogueSystem
         public void RemoveChild(DialogueNode parent, DialogueNode child, string outputName)
         {
             Undo.RecordObject(parent, "DialogueEditor (RemoveChild)");
-            //parent.EditorData.Childrens.Remove(child);
-            //child.EditorData.Parents.Remove(parent);
             parent.DeleteEdge(outputName, child.GUID);
             EditorUtility.SetDirty(parent);
-        }
-
-        public List<DialogueNode> GetChildren(DialogueNode parent)
-        {
-            return parent.Childrens; 
         }
 
         public DialogueNode CreateDialogueNode(int index, Vector2 position)
@@ -58,14 +49,14 @@ namespace DialogueSystem
             DialogueNode nodeInstance = ScriptableObject.CreateInstance(nameof(DialogueNode)) as DialogueNode;
             nodeInstance.name = "DialogueNode";
             nodeInstance.NodeID.AddIndex(index);
-            DialogueNodes.Add(nodeInstance);
             Undo.RecordObject(this, "DialogueEditor (Create Dialogue Node)");
+            DialogueNodes.Add(nodeInstance);
             AssetDatabase.AddObjectToAsset(nodeInstance, this);
             nodeInstance.GUID = GUID.Generate().ToString();
             Undo.RegisterCreatedObjectUndo(nodeInstance, "DialogueEditor (Create Dialogue Node)");
             AssetDatabase.SaveAssets();
 
-            //EditorUtility.SetDirty(this);
+            EditorUtility.SetDirty(this);
             return nodeInstance;
         }
 
@@ -73,8 +64,10 @@ namespace DialogueSystem
         {
             Undo.RecordObject(this, "DialogueEditor (Delete Dialogue Node)");
             DialogueNodes.Remove(dialogueNode);
-            Undo.DestroyObjectImmediate(dialogueNode);
+            if(dialogueNode != null)
+                Undo.DestroyObjectImmediate(dialogueNode);
             AssetDatabase.SaveAssets();
+            EditorUtility.SetDirty(this);
         }
     }
 }

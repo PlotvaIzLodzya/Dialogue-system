@@ -12,6 +12,16 @@ namespace DialogueSystem
         {
             Text = text;
         }
+
+        public DialogueLine()
+        {
+        }
+
+        public void SetText(string text)
+        {
+            Debug.Log(text);
+            Text = text;
+        }
     }
 }
 
