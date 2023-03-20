@@ -100,7 +100,7 @@ public class EditorDialogueNodeView: Node
         textField.name = guid;
         TextFields.Add(textField);
         outputContainer.Add(textField);
-        Port output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Multi, typeof(bool));
+        Port output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(bool));
         output.name = guid;
 
         if (Input != null)

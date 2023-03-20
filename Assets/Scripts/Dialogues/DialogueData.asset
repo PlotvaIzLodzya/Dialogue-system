@@ -158,12 +158,6 @@ MonoBehaviour:
     <InputGUID>k__BackingField: Not setted
     <OutputGUID>k__BackingField: 2b8d0608e6713df48ba5eff4e6672081
     Connected: 1
-  - <DataGUID>k__BackingField: 1b20863da1da7384fbe6daf3c2e34cf6
-    <ParentNodeGUID>k__BackingField: 84aa37835f09f504e8de9cc4a0e18bf5
-    <ChildNodeGUID>k__BackingField: 2ee395fb077de9b42a41f52bd82abfa0
-    <InputGUID>k__BackingField: Not setted
-    <OutputGUID>k__BackingField: f389dd25c4bc1e04bbc56dd9c8b9417e
-    Connected: 1
   - <DataGUID>k__BackingField: 2d63d28eb256e634da837f37d87b2256
     <ParentNodeGUID>k__BackingField: 84aa37835f09f504e8de9cc4a0e18bf5
     <ChildNodeGUID>k__BackingField: 7a94d2a71b049374099bfb4770b64a13
@@ -172,8 +166,8 @@ MonoBehaviour:
     Connected: 1
   - <DataGUID>k__BackingField: 3802e02e316375243b1bd2fe2c4231d0
     <ParentNodeGUID>k__BackingField: 84aa37835f09f504e8de9cc4a0e18bf5
-    <ChildNodeGUID>k__BackingField: 7a94d2a71b049374099bfb4770b64a13
+    <ChildNodeGUID>k__BackingField: 2ee395fb077de9b42a41f52bd82abfa0
     <InputGUID>k__BackingField: Not setted
     <OutputGUID>k__BackingField: f389dd25c4bc1e04bbc56dd9c8b9417e
     Connected: 1
-  EditorPosition: {x: 337.45004, y: 294.49997}
+  EditorPosition: {x: 323, y: 315}

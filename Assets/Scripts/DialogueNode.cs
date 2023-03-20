@@ -15,7 +15,7 @@ namespace DialogueSystem
         [field: SerializeField] public NodeID NodeID { get; private set; }
         [field: SerializeField] public DialogueNodeType Type { get; private set; }
 
-        //For undo redo puprosese
+        //For undo redo puproses
         public string GUID;
         public List<EdgeData> Edges = new List<EdgeData>();
         public Vector2 EditorPosition;
@@ -27,7 +27,7 @@ namespace DialogueSystem
 
         public void AddAnswer(string guid)
         {
-            var line = new DialogueLine("");
+            var line = new DialogueLine();
             var answer = new Answer(guid, line);
    
             _answers.Add(answer);
